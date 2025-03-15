@@ -53,4 +53,43 @@ h1 {
   display: none;
 }
 
+.data-metrics {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 3vh;
+  margin-left: 4%;
+}
+.data-metrics__image {
+  width: 35vh;
+}
+.data-metrics .metric {
+  position: relative;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  transition: transform 0.5s ease;
+}
+.data-metrics .metric:hover {
+  transform: scale(1.1);
+}
+.data-metrics .metric__content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgb(255, 255, 255);
+}
+.data-metrics .metric__number {
+  font-size: 35px;
+  font-weight: bold;
+}
+.data-metrics .metric__text {
+  font-size: 0.7rem;
+  margin-top: -2vh;
+  text-transform: uppercase;
+}
+
 /*# sourceMappingURL=style.css.map */
