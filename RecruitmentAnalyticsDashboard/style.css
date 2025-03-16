@@ -50,7 +50,6 @@ body {
 .article-container {
   background-color: #A5E4F9;
   border-radius: 30px;
-  height: 100vh;
   padding: 2%;
 }
 .article-container__section {
@@ -61,7 +60,7 @@ body {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .data-metrics {
