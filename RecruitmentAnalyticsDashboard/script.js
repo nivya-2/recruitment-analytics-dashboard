@@ -181,7 +181,7 @@ document.addEventListener('DOMContentLoaded', function() {
             chartContent.innerHTML = '';
 
             sourceArray.forEach(item => {
-                const percentage = (item.count / maxCount) * 100;
+                const percentage = (item.count / maxCount) * 85;
 
                 const chartRow = document.createElement('div');
                 chartRow.className = 'sources-chart-row';
@@ -189,8 +189,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 chartRow.innerHTML = `
                     <div class="sources-chart-label">${item.source}</div>
                     <div class="sources-chart-bar-container">
-                        <div class="sources-chart-bar" style="width: ${percentage}%;"></div>
+                        <div class="sources-chart-bar" style="width: ${percentage}%;">
                         <div class="sources-chart-value">${item.count}</div>
+                        </div>
                     </div>
                 `;
 
