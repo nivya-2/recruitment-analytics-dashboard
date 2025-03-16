@@ -50,7 +50,7 @@ h1 {
     font-weight: bold;
 }
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 // Block: data-metrics
@@ -97,4 +97,163 @@ h1 {
             text-transform: uppercase;
         }
     }
+}
+
+
+$primary-color: #0191C1;
+$text-color: #000000;
+$bg-color: #f0a729;
+
+.job-card_container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 0fr));
+    gap: 1.5rem;
+    padding: 1rem;
+    margin-left: 6rem;
+    color: $text-color;
+    margin-top: 0.5rem;
+    
+    // Optional responsive adjustments
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(auto-fill, minmax(280px, 0fr));
+      gap: 1rem;
+      padding: 0.5rem;
+      justify-content: center;
+    }}
+
+.job-card{
+  color: #000000;
+  max-width: 360px;
+//   width: 20vw;
+//   height: 40vh;
+  background-color: white;
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out; // Smooth easing
+
+  &:hover {
+    transform: scale(1.05) translateY(-10px); // Enlarges and lifts
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); // Adds a deeper shadow
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1rem;
+    background-color: $primary-color;
+    border-radius: 24px 24px 0 0;
+  }
+  
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  &__avatar {
+
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color:$primary-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: white;
+  }
+  
+  &__title {
+    font-size: 22px;
+    font-weight: 700;
+    color: $text-color;
+    margin: 0;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  &__details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px * 1.5;
+  }
+  
+  &__location {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: $text-color;
+  }
+  
+  &__icon {
+    fill: $text-color;
+    margin-right: 8px;
+  }
+  
+  &__experience{
+    background-color: $primary-color;
+    font-size: 13px;
+    padding: 4px 20px;
+    border-radius: 999px;
+    color: white;
+  }
+  
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+  }
+  
+  &__date {
+    font-size: 14px;
+    color: $text-color;
+  }
+  
+  &__stats {
+    text-align: right;
+  }
+  
+  &__stat {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  &__stat-label {
+    font-weight: bold;
+    color: $text-color;
+  }
+  
+  &__stat-value {
+    color: $text-color;
+  }
+  
+  &__link {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: $text-color;
+    text-decoration: none;
+    
+    &:hover {
+        color: $bg-color;
+      
+      .job-card__arrow {
+        transform: translateX(4px);
+        fill: $bg-color;
+       
+      }
+    }
+     &__arrow {
+    margin-left: 8px;
+    transition: transform 0.2s ease;
+  }
+  }
+  
 }

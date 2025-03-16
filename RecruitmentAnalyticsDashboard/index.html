@@ -14,7 +14,7 @@
             <h1 id="header-section-title">Recruitment Analytics</h1>
             <div class="tab-container">
                 <button class="tab active" onclick="switchTab()">Recruitment Analytics</button>
-                <button class="tab jobpostings" onclick="switchTab()">Job Postings</button>
+                <button class="tab jobpostings" onclick="switchTab(); fetchJobPostings();">Job Postings</button>
             </div>
         </div>
     </header>
@@ -94,8 +94,9 @@
                 </div>
 
             </div>
-            <div id="jobPostings" class="hidden">
-                <h2>Job Postings Content</h2>
+            <div id="jobPostings" class="hidden job-card_container">
+                <!-- <h2>Job Postings Content</h2> -->
+
             </div>
         </div>
     </article>
