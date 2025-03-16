@@ -153,3 +153,56 @@ function updateFunnelChart(funnelData) {
 
 // Call the function on page load
 document.addEventListener("DOMContentLoaded", fetchAndUpdateFunnelChart);
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Fetch data from Firebase using Axios
+    axios.get(FIREBASE_DB_URL)
+    .then(response => {
+        const data = response.data;
+
+        // Ensure recruitmentMetrics and applicationSources exist
+        if (data.recruitmentMetrics && data.recruitmentMetrics.applicationSources) {
+            const sourceCounts = data.recruitmentMetrics.applicationSources;
+
+            // Convert data into an array for sorting
+            const sourceArray = Object.entries(sourceCounts).map(([source, count]) => ({
+                source,
+                count
+            }));
+
+            // Sort by count in descending order
+            sourceArray.sort((a, b) => b.count - a.count);
+
+            // Find the max count to calculate percentages
+            const maxCount = Math.max(...sourceArray.map(item => item.count));
+
+            // Generate the chart HTML
+            const chartContent = document.getElementById('sources-chart-content');
+            chartContent.innerHTML = '';
+
+            sourceArray.forEach(item => {
+                const percentage = (item.count / maxCount) * 100;
+
+                const chartRow = document.createElement('div');
+                chartRow.className = 'sources-chart-row';
+
+                chartRow.innerHTML = `
+                    <div class="sources-chart-label">${item.source}</div>
+                    <div class="sources-chart-bar-container">
+                        <div class="sources-chart-bar" style="width: ${percentage}%;"></div>
+                        <div class="sources-chart-value">${item.count}</div>
+                    </div>
+                `;
+
+                chartContent.appendChild(chartRow);
+            });
+        } else {
+            console.error('Error: applicationSources data is missing.');
+            document.getElementById('sources-chart-content').innerHTML = '<div class="error">No data available.</div>';
+        }
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+        document.getElementById('sources-chart-content').innerHTML = '<div class="error">Error loading data. Please try again later.</div>';
+    });
+});
