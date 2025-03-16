@@ -61,3 +61,39 @@ document.addEventListener("DOMContentLoaded", () => {
         button.addEventListener("click", () => switchTab(button));
     });
 });
+
+
+
+const FIREBASE_DB_URL = 'https://recruitmentanalyticsdashboard-default-rtdb.firebaseio.com/.json';
+
+const fetchMetrics = async () => {
+  try {
+    const response = await axios.get(FIREBASE_DB_URL);
+    const data = response.data.recruitmentMetrics.dashboardMetrics;
+
+    const dataMetrics = {
+      totalHired: data.totalHired,
+      applicationsPerHire: data.applicationsPerHire,
+      daysPerHire: data.daysPerHire,
+      costPerHire: data.costPerHire,
+      openPositions: data.openPositions,
+      closedPositions: data.closedPositions,
+    };
+
+    updateMetrics(dataMetrics);
+
+  } catch (error) {
+    console.error('Error fetching data from Firebase:', error);
+  }
+};
+
+const updateMetrics = (dataMetrics) => {
+  document.getElementById('totalHired').textContent = dataMetrics.totalHired;
+  document.getElementById('applicationsPerHire').textContent = dataMetrics.applicationsPerHire;
+  document.getElementById('daysPerHire').textContent = dataMetrics.daysPerHire;
+  document.getElementById('costPerHire').textContent = `$${dataMetrics.costPerHire}`;
+  document.getElementById('openPositions').textContent = dataMetrics.openPositions;
+  document.getElementById('closedPositions').textContent = dataMetrics.closedPositions;
+};
+
+document.addEventListener('DOMContentLoaded', fetchMetrics);
