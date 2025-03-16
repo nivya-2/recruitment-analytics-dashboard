@@ -207,3 +207,67 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('sources-chart-content').innerHTML = '<div class="error">Error loading data. Please try again later.</div>';
     });
 });
+document.addEventListener('DOMContentLoaded', function() {
+    const genderRatioChart = document.getElementById('genderRatioChart');
+    
+    // Fetch data from Firebase using Axios
+    axios.get(FIREBASE_DB_URL)
+    .then(response => {
+        const data = response.data;
+
+        if (data.recruitmentMetrics && data.recruitmentMetrics.genderRatio) {
+            const { male, female } = data.recruitmentMetrics.genderRatio;
+            const total = male + female;
+            const maleRatio = male / total;
+            const femaleRatio = female / total;
+
+            renderGenderRatioChart(maleRatio, femaleRatio, male, female);
+        } else {
+            throw new Error('Gender ratio data is missing.');
+        }
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+        genderRatioChart.innerHTML = `
+            <div class="gender-ratio__error">Error loading data. Please try again later.</div>
+        `;
+    });
+
+    function renderGenderRatioChart(maleRatio, femaleRatio, maleCount, femaleCount) {
+        // Calculate SVG circle properties
+        const radius = 60;
+        const circumference = 2 * Math.PI * radius;
+        const maleDash = circumference * maleRatio;
+        const femaleDash = circumference * femaleRatio;
+        
+        // Generate SVG for donut chart with responsive sizing
+        const svg = `
+        <svg width="100%" height="100%" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet">
+            <!-- Male segment -->
+            <circle cx="100" cy="100" r="${radius}" fill="transparent" 
+                    stroke="#FFA500" stroke-width="25"
+                    stroke-dasharray="${maleDash} ${circumference}" 
+                    stroke-dashoffset="0"
+                    transform="rotate(-90 100 100)" />
+            
+            <!-- Female segment -->
+            <circle cx="100" cy="100" r="${radius}" fill="transparent" 
+                    stroke="#30c9e8" stroke-width="25"
+                    stroke-dasharray="${femaleDash} ${circumference}" 
+                    stroke-dashoffset="-${maleDash}"
+                    transform="rotate(-90 100 100)" />
+                    
+            <!-- Center text showing percentages -->
+            <text x="100" y="95" text-anchor="middle" font-size="14" fill="#333" font-weight="bold">
+            ${Math.round(maleRatio * 100)}% / ${Math.round(femaleRatio * 100)}%
+            </text>
+            <text x="100" y="115" text-anchor="middle" font-size="12" fill="#666">
+            (${maleCount}/${femaleCount})
+            </text>
+        </svg>
+        `;
+        
+        // Update the DOM
+        genderRatioChart.innerHTML = svg;
+    }
+});

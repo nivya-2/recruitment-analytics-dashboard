@@ -266,9 +266,11 @@ footer {
         margin-bottom: 2rem;
     }
 }
-#recruitmentAnalytics{
+#recruitmentAnalytics {
     display: flex;
-    gap: 8%;
+    flex-wrap: wrap;
+    gap: 3vh;
+    justify-content: space-between;
 }
 .funnel-sources__container{
     display: flex;
@@ -316,7 +318,6 @@ footer {
   
     &-bar {
       height: 100%;
-    //   width: 80%;
       background-color: #4A90E2;
       border-radius: 0.75rem;
       display: block;
@@ -334,4 +335,83 @@ footer {
       padding-left: 0.625rem;
     }
 }
+.gender-age-experience__container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2vh;
+    justify-content: space-between;
+}
   
+.gender-ratio {
+    &__card {
+        width: 15rem;
+        height: 15rem;
+        background-color: white;
+        border-radius: 0.75rem;
+        box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+        padding: 1.25rem;
+        text-align: center;
+        margin: 0;
+    }
+
+    &__title {
+        text-align: center;
+        font-size: 1rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        color: #333;
+    }
+
+    &__donut-chart {
+        position: relative;
+        width: 9rem;
+        height: 9rem;
+        margin: 0 auto;
+    }
+
+    &__legend {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin-top: 0.625rem;
+
+        &-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        }
+
+        &-color {
+        width: 1rem;
+        height: 1rem;
+        border-radius: 0.2rem;
+
+        &--male {
+            background-color: #FFA500;
+        }
+
+        &--female {
+            background-color: #30c9e8;
+        }
+        }
+
+        &-text {
+        font-size: 0.875rem;
+        color: #333;
+        }
+    }
+
+    &__loading {
+        font-size: 1rem;
+        color: #666;
+        text-align: center;
+        margin: 1.25rem 0;
+    }
+
+    &__error {
+        color: #e74c3c;
+        font-size: 0.875rem;
+        text-align: center;
+        margin: 0.625rem 0;
+    }
+}  
