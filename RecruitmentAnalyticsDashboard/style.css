@@ -119,5 +119,142 @@ footer {
     opacity: 1;
   }
 }
+.funnel-chart__card {
+  background: white;
+  padding: 1.25rem;
+  border-radius: 0.625rem;
+  box-shadow: 0 0.313rem 0.625rem 0 rgba(65, 65, 65, 0.1);
+  text-align: center;
+  width: 32vw;
+  padding: 5%;
+}
+
+.funnel-chart__heading {
+  margin-bottom: 0.625rem;
+}
+
+.funnel-chart__heading p {
+  font-size: 1.125rem;
+  font-weight: bold;
+  margin-bottom: 10%;
+  color: #777;
+}
+
+.funnel-chart__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.funnel-chart-data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.data-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  margin: 0.313rem 0;
+}
+
+.data-heading {
+  width: 10vw;
+  text-align: left;
+  font-size: 0.875rem;
+  color: #777;
+}
+
+.graph-container {
+  display: flex;
+  flex-grow: 1;
+  height: 1.25rem;
+  border-radius: 0.313rem;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+}
+
+.graph-bar {
+  height: 100%;
+  border-radius: 0.313rem;
+}
+
+.application {
+  background: #3da9fc;
+}
+
+.review {
+  background: #56c3ff;
+}
+
+.assessment {
+  background: #6fcfff;
+}
+
+.interview-1 {
+  background: #85dcff;
+}
+
+.interview-2 {
+  background: #f5c37f;
+}
+
+.offer {
+  background: #f5b76f;
+}
+
+.start {
+  background: #f59b4f;
+}
+
+.width-line-initial,
+.width-line-final {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 0.625rem;
+  margin-left: 10vw;
+}
+.width-line-initial p,
+.width-line-final p {
+  font-size: 0.7rem;
+  color: #888;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.horizontal-line {
+  width: 80%;
+  height: 0.05rem;
+  background-color: #ccc;
+  position: relative;
+}
+
+.width-line-final {
+  margin-top: 2%;
+  width: 1vw;
+}
+.width-line-final p {
+  margin-top: 2rem;
+  color: #777;
+}
+
+.width-line-initial {
+  width: 85%;
+}
+.width-line-initial p {
+  margin-bottom: 2rem;
+}
+
+#recruitmentAnalytics {
+  display: flex;
+  gap: 8%;
+}
 
 /*# sourceMappingURL=style.css.map */

@@ -97,3 +97,59 @@ const updateMetrics = (dataMetrics) => {
 };
 
 document.addEventListener('DOMContentLoaded', fetchMetrics);
+
+async function fetchAndUpdateFunnelChart() {
+    try {
+        const response = await axios.get(FIREBASE_DB_URL);
+
+        if (!response.data || !response.data.recruitmentMetrics || !response.data.recruitmentMetrics.recruitmentFunnel) {
+            console.error("No recruitment funnel data found!");
+            return;
+        }
+
+        const funnelData = response.data.recruitmentMetrics.recruitmentFunnel;
+        updateFunnelChart(funnelData);
+
+    } catch (error) {
+        console.error("Error fetching recruitment funnel data:", error);
+    }
+}
+
+function updateFunnelChart(funnelData) {
+    const stages = {
+        "applicationReceived": "application",
+        "reviewDone": "review",
+        "assessmentCleared": "assessment",
+        "interviewRound1": "interview-1",
+        "interviewRound2": "interview-2",
+        "finalOffer": "offer",
+        "hired": "start"
+    };
+
+    // Find the maximum value for scaling (applications received is usually the highest)
+    const maxApplicants = funnelData.applicationReceived || 1;
+    let lastStagePercentage = 0;
+
+    Object.entries(stages).forEach(([key, className]) => {
+        const bar = document.querySelector(`.graph-bar.${className}`);
+        if (bar && funnelData[key] !== undefined) {
+            const percentage = (funnelData[key] / maxApplicants) * 100;
+            bar.style.width = `${percentage}%`;
+            bar.setAttribute("data-value", `${percentage.toFixed(1)}%`); // Optional: Show percentage in tooltip
+            
+            // Store last stage percentage (hired/start)
+            if (key === "hired") {
+                lastStagePercentage = percentage.toFixed(1);
+            }
+        }
+    });
+
+    // Update final percentage dynamically
+    const finalPercentageElement = document.querySelector(".width-line-final p");
+    if (finalPercentageElement) {
+        finalPercentageElement.innerText = `${lastStagePercentage}%`;
+    }
+}
+
+// Call the function on page load
+document.addEventListener("DOMContentLoaded", fetchAndUpdateFunnelChart);
