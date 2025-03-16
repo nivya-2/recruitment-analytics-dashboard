@@ -9,18 +9,17 @@
     <title>Recruitment Analytics Dashboard</title>
 </head>
 <body>
-    <header>
-        <div class="header-container">
-            <h1 id="header-section-title">Recruitment Analytics</h1>
-            <div class="tab-container">
-                <button class="tab active" onclick="switchTab()">Recruitment Analytics</button>
-                <button class="tab jobpostings" onclick="switchTab()">Job Postings</button>
-            </div>
+    <header class="dashboard__header">
+        <h1 id="header-section-title" class="dashboard__title">Recruitment Analytics</h1>
+        <div class="tab-container">
+            <button class="tab tab-container__button active" data-tab="analytics">Recruitment Analytics</button>
+            <button class="tab tab-container__button" data-tab="jobPostings">Job Postings</button>
         </div>
     </header>
-    <article>
-        <div class="article-container">
-            <div id="recruitmentAnalytics">
+    
+    <main class="dashboard__content">
+        <section class="article-container">
+            <div id="recruitmentAnalytics" class="article-container__section">
                 <h2>Recruitment Analytics Content</h2>
 
                 <div class="data-metrics">
@@ -94,11 +93,12 @@
                 </div>
 
             </div>
-            <div id="jobPostings" class="hidden">
+            <div id="jobPostings" class="article-container__section hidden">
                 <h2>Job Postings Content</h2>
             </div>
-        </div>
-    </article>
+        </section>
+    </main>
+    
     <script src="script.js"></script>
 </body>
 </html>

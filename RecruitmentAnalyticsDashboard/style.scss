@@ -1,58 +1,76 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;  /* Ensures padding/borders don't affect width */
+    box-sizing: border-box;
 }
 
 body {
-    font-family: 'Poppins';
+    font-family: Arial, sans-serif;
     color: white;
-    width: 100%;
-    background-color: #A5E4F9;
-}
-
-.header-container {
-    height: 30%;
-    transition: background-color 0.3s ease-in-out;
     background-color: #008cba;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding:2% 10%;
+    transition: background-color 0.3s ease-in-out;
 }
 
-h1 {
-    font-size: 2rem;
+.dashboard {
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2% 7%;
+    }
+    
+    &__title {
+        font-size: 1.8rem;
+    }
+    
+    &__content {
+        padding: 1% 6%;
+    }
 }
 
 .tab-container {
     display: inline-flex;
     background: #CBEDF9;
+    border-radius: 15px;
+    box-shadow: 2px 0px 2px rgba(0, 0, 0, 0.2);
+    height: 9vh;
+    
+    &__button {
+        border: none;
+        background: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 1rem;
+        border-radius: 15px;
+        color: black;
+        transition: all 0.1s ease;
+        
+        &.active {
+            background: #FB9F00;
+            color: white;
+            font-weight: bold;
+        }
+    }
+}
 
+.article-container {
+    background-color: #A5E4F9;
     border-radius: 30px;
-    box-shadow: 2px 0px 2px  rgba(0, 0, 0, 0.2);
+    height: 100vh;
+    padding: 2%;
+    
+    &__section {
+        display: none;
+    }
+    
+    &__section:not(.hidden) {
+        display: block;
+    }
 }
 
-.tab {
-    border: none;
-    background: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 1rem;
-    border-radius: 30px;
-    color: black;
-    transition: all 0.1s ease;
-}
-
-.tab.active {
-    background: #FB9F00;
-    color: white;
-    font-weight: bold;
-}
 .hidden {
     display: none;
 }
-
 // Block: data-metrics
 .data-metrics {
     display: flex;
