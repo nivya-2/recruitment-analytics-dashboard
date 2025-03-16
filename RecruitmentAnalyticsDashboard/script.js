@@ -1,3 +1,5 @@
+const FIREBASE_URL = "https://recruitmentanalyticsdashboard-default-rtdb.firebaseio.com/";
+
 function switchTab() {
     const analyticsDiv = document.getElementById("recruitmentAnalytics");
     const jobPostingsDiv = document.getElementById("jobPostings");
@@ -28,4 +30,40 @@ function switchTab() {
     headerContainer.style.backgroundColor = activeTheme.header;
     tabContainer.style.backgroundColor = activeTheme.tabBg;
     headerTitle.innerText = activeTheme.title;
+}
+
+function fetchCandidate() {
+
+    var candidateList = [];
+    var applicationList = [];
+    axios.get(`${FIREBASE_URL}.json`)
+        .then(response => {
+            candidateList = Object.values(response.data.candidates);
+            applicationList = Object.values(response.data.applications);
+            renderTable(candidateList, applicationList);
+        }).catch(error => {
+            console.log("Error");
+        })
+}
+
+
+function renderTable(candidateList, applicationList) {
+
+    var tablebody = document.getElementById('candidate-table-body');
+    tablebody.innerHTML = ""; // Clear existing rows
+    candidateList.forEach(candidate => {
+        const application = applicationList.find(app => app.candidate_id === candidate.candidateId);
+        tablebody.innerHTML += `<tr>
+                <td>${candidate.candidateId}</td>
+                <td>${candidate.firstName} ${candidate.lastName}</td>
+                <td>${application.application_date}</td>
+                <td><button class="download-button"><img src="images/view-svgrepo-com.svg" alt="View Icon"></button></td>
+                <td>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </td>
+            </tr>`;
+    });
 }

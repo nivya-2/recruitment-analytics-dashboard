@@ -13,8 +13,8 @@
         <div class="header-container">
             <h1 id="header-section-title">Recruitment Analytics</h1>
             <div class="tab-container">
-                <button class="tab active" onclick="switchTab()">Recruitment Analytics</button>
-                <button class="tab jobpostings" onclick="switchTab()">Job Postings</button>
+                <button class="tab active" onclick="switchTab(); fetchCandidate();">Recruitment Analytics</button>
+                <button class="tab jobpostings" onclick="switchTab(); fetchCandidate();">Job Postings</button>
             </div>
         </div>
     </header>
@@ -96,6 +96,31 @@
             </div>
             <div id="jobPostings" class="hidden">
                 <h2>Job Postings Content</h2>
+
+                <div class="candidate-summary-body">
+                <div class="candidate-summary">
+                    <div class="candidate-summary-header">
+                        <h2>Candidates Summary</h2>
+                        <button class="close-button">&times;</button>
+                    </div>
+                    <div class="table-container">
+                        <table class="candidate-table">
+                            <thead>
+                                <tr>
+                                    <th>Candidate Id</th>
+                                    <th>Name</th>
+                                    <th>Date Applied</th>
+                                    <th>Resume</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody class="candidate-table-body" id="candidate-table-body">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
             </div>
         </div>
     </article>

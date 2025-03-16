@@ -50,7 +50,7 @@ h1 {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .data-metrics {
@@ -90,6 +90,122 @@ h1 {
   font-size: 0.7rem;
   margin-top: -2vh;
   text-transform: uppercase;
+}
+
+.candidate-summary-body {
+  background-color: #f8f9fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  padding: 2vw;
+}
+
+.candidate-summary {
+  background: white;
+  color: black;
+  padding: 3vw;
+  border-radius: 1.5rem;
+  box-shadow: 0 0.5vw 1.5vw rgba(0, 0, 0, 0.15);
+  width: 100vw;
+  max-width: 800px;
+  overflow-x: auto;
+  max-height: 80vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.candidate-summary .candidate-summary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 0.15rem solid #ddd;
+  padding-bottom: 1.5vh;
+  margin-bottom: 1.5vh;
+}
+.candidate-summary .candidate-summary-header h2 {
+  font-size: 2rem;
+  margin: 0;
+}
+.candidate-summary .candidate-summary-header .close-button {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
+.candidate-summary .table-container {
+  overflow-y: auto;
+  max-height: 60vh;
+  border-radius: 5px;
+}
+.candidate-summary .candidate-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.candidate-summary .candidate-table th, .candidate-summary .candidate-table td {
+  padding: 1.5vh 1.5vw;
+  text-align: left;
+  border-bottom: 0.15rem solid #ddd;
+}
+.candidate-summary .candidate-table th {
+  background-color: #f1f1f1;
+  font-size: 1.2rem;
+}
+.candidate-summary .candidate-table td {
+  font-size: 1.1rem;
+}
+.candidate-summary .candidate-table .download-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.4rem;
+  align-self: center;
+  padding: 0.3rem;
+}
+.candidate-summary .candidate-table .download-button img {
+  margin: auto;
+  width: 3.5rem;
+  height: 1.6rem;
+}
+.candidate-summary .candidate-table .switch {
+  position: relative;
+  display: inline-block;
+  width: 3rem;
+  height: 1.6rem;
+}
+.candidate-summary .candidate-table .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.candidate-summary .candidate-table .switch .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 1rem;
+}
+.candidate-summary .candidate-table .switch .slider:before {
+  position: absolute;
+  content: "";
+  height: 1.2rem;
+  width: 1.2rem;
+  left: 0.3rem;
+  bottom: 0.2rem;
+  background-color: white;
+  transition: 0.1s;
+  border-radius: 50%;
+}
+.candidate-summary .candidate-table .switch input:checked + .slider {
+  background-color: #4CAF50;
+}
+.candidate-summary .candidate-table .switch input:checked + .slider:before {
+  transform: translateX(1.3rem);
 }
 
 /*# sourceMappingURL=style.css.map */
