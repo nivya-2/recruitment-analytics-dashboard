@@ -316,6 +316,7 @@ footer {
   
     &-bar {
       height: 100%;
+    //   width: 80%;
       background-color: #4A90E2;
       border-radius: 0.75rem;
       display: block;
@@ -324,7 +325,7 @@ footer {
   
     &-value {
       position: absolute;
-      right: -1.25vw;
+      right: -2.25vw;
       top: 50%;
       transform: translateY(-50%);
       font-size: 0.85rem;

@@ -305,7 +305,7 @@ footer {
 }
 .sources-chart-value {
   position: absolute;
-  right: -1.25vw;
+  right: -2.25vw;
   top: 50%;
   transform: translateY(-50%);
   font-size: 0.85rem;
