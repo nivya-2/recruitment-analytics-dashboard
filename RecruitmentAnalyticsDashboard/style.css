@@ -50,7 +50,6 @@ body {
 .article-container {
   background-color: #A5E4F9;
   border-radius: 30px;
-  height: 100vh;
   padding: 2%;
 }
 .article-container__section {
@@ -61,7 +60,7 @@ body {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .data-metrics {
@@ -101,6 +100,24 @@ body {
   font-size: 0.7rem;
   margin-top: -2vh;
   text-transform: uppercase;
+}
+
+footer {
+  width: 100%;
+  text-align: center;
+  padding: 15px 0;
+  margin: 0;
+  box-sizing: border-box;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

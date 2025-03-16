@@ -56,7 +56,6 @@ body {
 .article-container {
     background-color: #A5E4F9;
     border-radius: 30px;
-    height: 100vh;
     padding: 2%;
     
     &__section {
@@ -69,7 +68,7 @@ body {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 // Block: data-metrics
 .data-metrics {
@@ -115,4 +114,20 @@ body {
             text-transform: uppercase;
         }
     }
+}
+
+footer {
+    width: 100%;
+    // background-color: $footer-background;
+    // color: $footer-color;
+    text-align: center;
+    padding: 15px 0;
+    margin: 0;
+    box-sizing: border-box;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }
