@@ -64,15 +64,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-const API_URL = 'https://recruitmentanalyticsdashboard-default-rtdb.firebaseio.com/recruitmentMetrics/dashboardMetrics.json';
+const FIREBASE_DB_URL = 'https://recruitmentanalyticsdashboard-default-rtdb.firebaseio.com/.json';
 
-// Function to fetch data from Firebase
 const fetchMetrics = async () => {
   try {
-    const response = await axios.get(API_URL);
-    const data = response.data;
+    const response = await axios.get(FIREBASE_DB_URL);
+    const data = response.data.recruitmentMetrics.dashboardMetrics;
 
-    // Assuming data structure is similar to the dummy data
     const dataMetrics = {
       totalHired: data.totalHired,
       applicationsPerHire: data.applicationsPerHire,
@@ -82,7 +80,6 @@ const fetchMetrics = async () => {
       closedPositions: data.closedPositions,
     };
 
-    // Update the DOM with the data fetched from Firebase
     updateMetrics(dataMetrics);
 
   } catch (error) {
@@ -90,7 +87,6 @@ const fetchMetrics = async () => {
   }
 };
 
-// Function to update the DOM with the fetched values
 const updateMetrics = (dataMetrics) => {
   document.getElementById('totalHired').textContent = dataMetrics.totalHired;
   document.getElementById('applicationsPerHire').textContent = dataMetrics.applicationsPerHire;
@@ -100,5 +96,4 @@ const updateMetrics = (dataMetrics) => {
   document.getElementById('closedPositions').textContent = dataMetrics.closedPositions;
 };
 
-// Fetch and display the data after the DOM is loaded
 document.addEventListener('DOMContentLoaded', fetchMetrics);
