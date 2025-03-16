@@ -257,4 +257,61 @@ footer {
   gap: 8%;
 }
 
+.funnel-sources__container {
+  display: flex;
+  flex-direction: column;
+  gap: 3vh;
+  justify-content: space-between;
+}
+
+.sources-chart-card {
+  width: 32vw;
+  background-color: #ffffff;
+  border-radius: 0.75rem;
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+  padding: 1.2rem;
+}
+.sources-chart-title {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #333333;
+}
+.sources-chart-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.75vw;
+}
+.sources-chart-label {
+  width: 7vw;
+  text-align: right;
+  padding-right: 1rem;
+  font-size: 0.85rem;
+  color: #333333;
+}
+.sources-chart-bar-container {
+  flex-grow: 1;
+  height: 2vh;
+  position: relative;
+  border-radius: 0.75rem;
+}
+.sources-chart-bar {
+  height: 100%;
+  background-color: #4A90E2;
+  border-radius: 0.75rem;
+  display: block;
+  position: relative;
+}
+.sources-chart-value {
+  position: absolute;
+  right: -1.25vw;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #333333;
+  padding-left: 0.625rem;
+}
+
 /*# sourceMappingURL=style.css.map */
