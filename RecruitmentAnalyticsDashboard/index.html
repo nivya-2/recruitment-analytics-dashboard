@@ -98,26 +98,79 @@
                 <h2>Job Postings Content</h2>
 
                 <div class="candidate-summary-body">
+                    
                 <div class="candidate-summary">
-                    <div class="candidate-summary-header">
-                        <h2>Candidates Summary</h2>
-                        <button class="close-button">&times;</button>
+                    <section class="candidate-summary__left">
+                        <button class="filter-button" onclick="toggleDropdown('filterOptions')">
+                            <span class="filter-button__icon"><img src="images/cuida_filter-outline.svg" alt=""></span>
+                            <span class="filter-button__text">FILTER</span>
+                        </button>
+                        <div id="filterOptions" class="dropdown-content show">
+                            <button class="dropdown-item" onclick="toggleDropdown('expLevel')">Experience Level</button>
+                            <div id="expLevel" class="sub-dropdown">
+                                <button class="sub-dropdown-item" onclick="selectOption(this, event)">Entry Level (0-2 years)</button>
+                                <button class="sub-dropdown-item selected" onclick="selectOption(this, event)">Mid Level (3-5 years)</button>
+                                <button class="sub-dropdown-item" onclick="selectOption(this, event)">Senior Level (6+ years)</button>
+                            </div>
+                            
+                            <button class="dropdown-item" onclick="toggleDropdown('appStatus')">Application Status</button>
+                            <div id="appStatus" class="sub-dropdown show">
+                                <button class="sub-dropdown-item" onclick="selectOption(this, event)">Applied</button>
+                                <button class="sub-dropdown-item selected" onclick="selectOption(this, event)">Shortlisted</button>
+                            </div>
+            
+                            <button class="dropdown-item" onclick="toggleDropdown('source')">Source of Application</button>
+                            <div id="source" class="sub-dropdown">
+                                <button class="sub-dropdown-item" onclick="selectOption(this, event)">LinkedIn</button>
+                                <button class="sub-dropdown-item" onclick="selectOption(this, event)">Agency</button>
+                                <button class="sub-dropdown-item" onclick="selectOption(this, event)">Indeed</button>
+                                <button class="sub-dropdown-item" onclick="selectOption(this, event)">Company Website</button>
+                            </div>
+                        </div>
+            
+                        <button class="filter-button" onclick="toggleDropdown('sortOptions')">
+                            <span class="filter-button__icon"><img src="images/icons8-sort-50.png" width="24" alt=""></span>
+                            <span class="filter-button__text">SORT</span>
+                        </button>
+                        <div id="sortOptions" class="dropdown-content">
+                            <button class="dropdown-item" onclick="toggleDropdown('sortDate')">Application Date</button>
+                            <div id="sortDate" class="sub-dropdown">
+                                <button class="sub-dropdown-item" onclick="selectOption(this, event)">Newest First</button>
+                                <button class="sub-dropdown-item" onclick="selectOption(this, event)">Oldest First</button>
+                            </div>
+            
+                            <button class="dropdown-item" onclick="toggleDropdown('sortAge')">Age</button>
+                            <div id="sortAge" class="sub-dropdown">
+                                <button class="sub-dropdown-item" onclick="selectOption(this, event)">Youngest First</button>
+                                <button class="sub-dropdown-item" onclick="selectOption(this, event)">Oldest First</button>
+                            </div>
+                        </div>
+                    </section>
+                    <div style="flex:4;margin-left:1vw;">
+                        <div class="candidate-summary-header">
+                            <h2>Candidates Summary</h2>
+                            <button class="close-button">&times;</button>
+                        </div>
+                        <div class="table-container">
+                            <table class="candidate-table">
+                                <thead>
+                                    <tr>
+                                        <th>Candidate Id</th>
+                                        <th>Name</th>
+                                        <th>Age</th>
+                                        <th>Experience (Yrs)</th>
+                                        <th>Date Applied</th>
+                                        <th>Source</th>
+                                        <th>Resume</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="candidate-table-body" id="candidate-table-body">
+                                    
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                    <div class="table-container">
-                        <table class="candidate-table">
-                            <thead>
-                                <tr>
-                                    <th>Candidate Id</th>
-                                    <th>Name</th>
-                                    <th>Date Applied</th>
-                                    <th>Resume</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody class="candidate-table-body" id="candidate-table-body">
-                                
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </div>

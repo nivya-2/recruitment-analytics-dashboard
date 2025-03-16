@@ -1,3 +1,12 @@
+$bg-color: #f0f0f0;
+$container-bg: #788ce4; // Same background as left div
+$border-color: #ccc;
+$box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+$text-color: white;
+$hover-bg: darken($container-bg, 10%); // Darker blue on hover
+$selected-bg: darken($container-bg, 20%); // Darkest for selected items
+$transition-speed: 0.3s;
+
 * {
     margin: 0;
     padding: 0;
@@ -116,13 +125,230 @@ h1 {
     border-radius: 1.5rem; // Slightly larger rounded corners
     box-shadow: 0 0.5vw 1.5vw rgba(0, 0, 0, 0.15);
     width: 100vw; // Increased width for larger display
-    max-width: 800px; // Larger max-width
     overflow-x: auto;
     max-height: 80vh;
     overflow: hidden;
     display: flex;
-    flex-direction: column;
-
+    flex-direction: row;
+    &__left {
+        flex: 1;
+        background-color: $container-bg;
+        padding: 2vh 2vw;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        position: relative;
+    
+        /* Improved scrolling behavior */
+        max-height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+    
+        /* Custom scrollbar */
+        &::-webkit-scrollbar {
+          width: 6px;
+        }
+    
+        &::-webkit-scrollbar-track {
+          background: lighten($container-bg, 10%);
+          border-radius: 3px;
+        }
+    
+        &::-webkit-scrollbar-thumb {
+          background: darken($container-bg, 20%);
+          border-radius: 3px;
+        }
+    
+        &::-webkit-scrollbar-thumb:hover {
+          background: darken($container-bg, 30%);
+        }
+      }
+    
+      &__right {
+        flex: 5;
+        padding: 20px;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    
+      .filter-button {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background-color: $container-bg;
+        color: $text-color;
+        border: none;
+        padding: 0.5vh 1vw;
+        font-size: 1rem;
+        cursor: pointer;
+        border-radius: 0.5vw;
+        transition: background-color $transition-speed ease;
+        z-index: 2; /* Ensure buttons stay above dropdowns */
+    
+        &:hover, &:focus {
+          background-color: $hover-bg;
+        }
+      }
+      .dropdown-content {
+        background-color: $container-bg;
+        width: 100%;
+        max-height: 0;
+        opacity: 0;
+        visibility: hidden; /* Hide completely when closed */
+        transform: scaleY(0);
+        transform-origin: top;
+        transition: max-height 0.4s ease-out, opacity 0.4s ease-out, transform 0.3s ease-out, visibility 0.4s;
+        overflow-y: auto; /* Allow scrolling within dropdown */
+        position: relative;
+        z-index: 1;
+      
+        &.show {
+          max-height: 200px; /* Limited height to prevent overflow */
+          opacity: 1;
+          visibility: visible;
+          transform: scaleY(1);
+        }
+      
+        /* Custom scrollbar for dropdowns */
+        &::-webkit-scrollbar {
+          width: 6px;
+        }
+      
+        &::-webkit-scrollbar-track {
+          background: lighten($container-bg, 5%);
+          border-radius: 3px;
+        }
+      
+        &::-webkit-scrollbar-thumb {
+          background: darken($container-bg, 15%);
+          border-radius: 3px;
+        }
+      }
+      
+      .dropdown-item {
+        background: none;
+        border: none;
+        text-align: left;
+        padding: 10px;
+        width: 100%;
+        cursor: pointer;
+        font-size: 1rem;
+        color: $text-color;
+        transition: background-color $transition-speed ease;
+        position: relative;
+        z-index: 2;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      
+        &:hover, &:focus {
+          background-color: $hover-bg;
+        }
+        
+        /* Smaller, more non-descript dropdown indicator */
+        &::after {
+          content: '';
+          display: inline-block;
+          width: 6px;
+          height: 6px;
+          border-right: 1.5px solid $text-color;
+          border-bottom: 1.5px solid $text-color;
+          transform: rotate(45deg);
+          margin-right: 5px;
+          transition: transform 0.3s ease;
+        }
+        
+        /* Rotate arrow when sub-dropdown is open */
+        &:has(+ .sub-dropdown.show)::after {
+          transform: rotate(-135deg);
+        }
+      }
+      
+      /* Improved Sub-dropdowns */
+      .sub-dropdown {
+        background-color: lighten($container-bg, 5%); /* Slightly lighter for visual hierarchy */
+        padding-left: 15px;
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        visibility: hidden;
+        transform: scaleY(0);
+        transform-origin: top;
+        transition: max-height 0.3s ease-out, opacity 0.3s ease-out, transform 0.2s ease-out, visibility 0.3s;
+      
+        &.show {
+          max-height: 150px; /* Limited height */
+          opacity: 1;
+          visibility: visible;
+          transform: scaleY(1);
+          overflow-y: auto; /* Allow scrolling if too many items */
+        }
+      
+        /* Custom scrollbar for sub-dropdowns */
+        &::-webkit-scrollbar {
+          width: 4px;
+        }
+      
+        &::-webkit-scrollbar-track {
+          background: lighten($container-bg, 7%);
+        }
+      
+        &::-webkit-scrollbar-thumb {
+          background: darken($container-bg, 12%);
+        }
+      }
+      
+      .sub-dropdown-item {
+        background: none;
+        border: none;
+        text-align: left;
+        padding: 8px;
+        width: 100%;
+        cursor: pointer;
+        font-size: 0.9rem;
+        color: $text-color;
+        transition: background-color $transition-speed ease;
+      
+        &:hover, &:focus {
+          background-color: $hover-bg;
+        }
+        
+        /* Keep selected state for deepest suboptions only */
+        &.selected {
+          background-color: $selected-bg;
+          font-weight: bold;
+          border-left: 3px solid white;
+        }
+      }
+      
+      /* Media query for better mobile experience */
+      @media (max-width: 768px) {
+        .container {
+          width: 95vw;
+          height: 80vh;
+          flex-direction: column;
+          
+          &__left {
+            flex: none;
+            width: 100%;
+            max-height: 40%;
+          }
+          
+          &__right {
+            flex: 1;
+          }
+        }
+        
+        .dropdown-content.show,
+        .sub-dropdown.show {
+          max-height: 40vh; /* Larger on mobile for better usability */
+        }
+    }
+      
     .candidate-summary-header {
         display: flex;
         justify-content: space-between;
@@ -233,4 +459,5 @@ h1 {
             }
         }
     }
+    
 }
