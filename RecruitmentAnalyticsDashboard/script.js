@@ -387,21 +387,27 @@ window.selectOption = function(element, event) {
   event.stopPropagation();
   const parent = element.closest('.sub-dropdown');
   const isSortingCategory = parent.id === 'sortDate' || parent.id === 'sortAge';
+  let wasSelected = element.classList.contains('selected');
 
   if (isSortingCategory) {
       document.querySelectorAll('#sortDate .sub-dropdown-item, #sortAge .sub-dropdown-item').forEach(item => {
           item.classList.remove('selected');
       });
+      // For sorting categories, always select the clicked option (toggle behavior not supported for sorting)
+      element.classList.add('selected');
   } else {
-      if (element.classList.contains('selected')) {
+      // For filter categories, support toggling selected state
+      if (wasSelected) {
           element.classList.remove('selected');
-          return;
+      } else {
+          parent.querySelectorAll('.sub-dropdown-item').forEach(item => {
+              item.classList.remove('selected');
+          });
+          element.classList.add('selected');
       }
-      parent.querySelectorAll('.sub-dropdown-item').forEach(item => {
-          item.classList.remove('selected');
-      });
   }
-  element.classList.add('selected');
+  
+  // Apply filters regardless of whether an option was selected or deselected
   applyFilters();
 }
 
