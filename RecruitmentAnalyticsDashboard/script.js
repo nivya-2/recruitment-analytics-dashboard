@@ -1,3 +1,5 @@
+const FIREBASE_DB_URL = 'https://recruitmentanalyticsdashboard-default-rtdb.firebaseio.com';
+
 function switchTab() {
     const analyticsDiv = document.getElementById("recruitmentAnalytics");
     const jobPostingsDiv = document.getElementById("jobPostings");
@@ -17,7 +19,7 @@ function switchTab() {
     tabs.forEach(tab => tab.classList.remove("active"));
     const activeTab = isAnalyticsActive ? tabs[1] : tabs[0]; // 0 = Analytics, 1 = Job Postings
     activeTab.classList.add("active");
-
+    
     // Define styles for each tab
     const themes = {
         analytics: { 
@@ -54,7 +56,10 @@ function switchTab() {
             tab.style.backgroundColor = "transparent";
         }
     });
-}
+//     if (!isAnalyticsActive) {
+//       fetchJobPostings();
+//   }
+ }
 
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".tab-container__button").forEach(button => {
@@ -64,11 +69,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-const FIREBASE_DB_URL = 'https://recruitmentanalyticsdashboard-default-rtdb.firebaseio.com/.json';
 
 const fetchMetrics = async () => {
   try {
-    const response = await axios.get(FIREBASE_DB_URL);
+    const response = await axios.get(`${FIREBASE_DB_URL}/.json`);
     const data = response.data.recruitmentMetrics.dashboardMetrics;
 
     const dataMetrics = {
@@ -100,7 +104,7 @@ document.addEventListener('DOMContentLoaded', fetchMetrics);
 
 async function fetchAndUpdateFunnelChart() {
     try {
-        const response = await axios.get(FIREBASE_DB_URL);
+        const response = await axios.get(`${FIREBASE_DB_URL}/.json`);
 
         if (!response.data || !response.data.recruitmentMetrics || !response.data.recruitmentMetrics.recruitmentFunnel) {
             console.error("No recruitment funnel data found!");
@@ -156,7 +160,7 @@ document.addEventListener("DOMContentLoaded", fetchAndUpdateFunnelChart);
 
 document.addEventListener('DOMContentLoaded', function() {
     // Fetch data from Firebase using Axios
-    axios.get(FIREBASE_DB_URL)
+    axios.get(`${FIREBASE_DB_URL}/.json`)
     .then(response => {
         const data = response.data;
 
@@ -211,7 +215,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const genderRatioChart = document.getElementById('genderRatioChart');
     
     // Fetch data from Firebase using Axios
-    axios.get(FIREBASE_DB_URL)
+    axios.get(`${FIREBASE_DB_URL}/.json`)
     .then(response => {
         const data = response.data;
 
@@ -271,15 +275,6 @@ document.addEventListener('DOMContentLoaded', function() {
         genderRatioChart.innerHTML = svg;
     }
 });
-  // Apply the correct theme
-  const activeTheme = isAnalyticsActive ? themes.jobPostings : themes.analytics;
-  document.body.style.backgroundColor = activeTheme.body;
-  headerContainer.style.backgroundColor = activeTheme.header;
-  tabContainer.style.backgroundColor = activeTheme.tabBg;
-  headerTitle.innerText = activeTheme.title;
-}
-
-
 
 
 
