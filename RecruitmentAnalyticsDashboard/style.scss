@@ -615,12 +615,12 @@ z-index: 1001;
 
 
 $bg-color: #f0f0f0;
-$container-bg: #788ce4; // Same background as left div
+$container-bg: #0191C1; // Same background as left div
 $border-color: #ccc;
 $box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 $text-color: white;
-$hover-bg: darken($container-bg, 10%); // Darker blue on hover
-$selected-bg: darken($container-bg, 20%); // Darkest for selected items
+$hover-bg: #026d94; // Darker blue on hover
+$selected-bg:#013447 ; // Darkest for selected items
 $transition-speed: 0.3s;
 
 
@@ -648,7 +648,7 @@ flex-direction: row;
     align-items: flex-start;
     gap: 0.5rem;
     position: relative;
-    
+
     border-radius: 10px;
     /* Improved scrolling behavior */
     max-height: 100%;
