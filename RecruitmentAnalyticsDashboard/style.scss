@@ -24,7 +24,7 @@ body {
     }
     
     &__content {
-        padding: 1% 6%;
+        padding: 1% 3%;
     }
 }
 
@@ -72,41 +72,41 @@ body {
 }
 // Block: data-metrics
 .data-metrics {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 3vh; 
-    margin-left: 4%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 3vh; 
+  margin-left: 4%;
 
-    &__image {
-        width: 35vh;
-    }
+  &__image {
+      width: 35vh;
+  }
 
-    .metric {
-        position: relative;
-        text-align: center;
-        margin: 0;
-        padding: 0;
-        transition: transform 0.5s ease;
+  .metric {
+      position: relative;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      transition: transform 0.5s ease;
 
-        &:hover {
-            transform: scale(1.1);
-        }
+      &:hover {
+          transform: scale(1.1);
+      }
 
-        &__content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: rgb(255, 255, 255);
-        }
+      &__content {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          color: rgb(255, 255, 255);
+      }
 
-        &__number {
-            font-size: 35px;
-            font-weight: bold;
-        }
+      &__number {
+          font-size: 35px;
+          font-weight: bold;
+      }
 
         &__text {
             font-size: 0.7rem;
@@ -415,3 +415,558 @@ footer {
         margin: 0.625rem 0;
     }
 }  
+$primary-color: #0191C1;
+$text-color: #000000;
+$bg1-color: #f0a729;
+
+.job-card_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 0fr));
+  gap: 1.5rem;
+  padding: 1rem;
+  margin-left: 3rem;
+  color: $text-color;
+  margin-top: 0.5rem;
+  
+  // Optional responsive adjustments
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 0fr));
+    gap: 1rem;
+    padding: 0.5rem;
+    justify-content: center;
+  }}
+
+.job-card{
+color: #000000;
+max-width: 360px;
+//   width: 20vw;
+//   height: 40vh;
+background-color: white;
+border-radius: 24px;
+padding: 2rem;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+position: relative;
+overflow: hidden;
+transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out; // Smooth easing
+
+&:hover {
+  transform: scale(1.05) translateY(-10px); // Enlarges and lifts
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); // Adds a deeper shadow
+}
+&::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1rem;
+  background-color: $primary-color;
+  border-radius: 24px 24px 0 0;
+}
+
+&__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+&__avatar {
+
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color:$primary-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: white;
+}
+
+&__title {
+  font-size: 22px;
+  font-weight: 700;
+  color: $text-color;
+  margin: 0;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+&__details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px * 1.5;
+}
+
+&__location {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: $text-color;
+}
+
+&__icon {
+  fill: $text-color;
+  margin-right: 8px;
+}
+
+&__experience{
+  background-color: $primary-color;
+  font-size: 13px;
+  padding: 4px 20px;
+  border-radius: 999px;
+  color: white;
+}
+
+&__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+&__date {
+  font-size: 14px;
+  color: $text-color;
+}
+
+&__stats {
+  text-align: right;
+}
+
+&__stat {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+&__stat-label {
+  font-weight: bold;
+  color: $text-color;
+}
+
+&__stat-value {
+  color: $text-color;
+}
+
+&__link {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: $text-color;
+  text-decoration: none;
+  
+  &:hover {
+      color: $bg1-color;
+    
+    .job-card__arrow {
+      transform: translateX(4px);
+      fill: $bg1-color;
+     
+    }
+  }
+   &__arrow {
+  margin-left: 8px;
+  transition: transform 0.2s ease;
+}
+}
+
+}
+
+.modal-backdrop {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.5);
+backdrop-filter: blur(5px);
+z-index: 1000;
+}
+
+
+.modal-fade-in {
+animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+from { opacity: 0; transform: translate(-50%, -55%); }
+to { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+
+.candidate-summary-body {
+display: none !important; /* Hide by default */
+position: fixed;
+top: 50%;
+left: 50%;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+margin: 0;
+padding: 2vw;
+transform: translate(-50%, -50%);
+z-index: 1001;
+
+}
+
+
+
+$bg-color: #f0f0f0;
+$container-bg: #0191C1; // Same background as left div
+$border-color: #ccc;
+$box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+$text-color: white;
+$hover-bg: #026d94; // Darker blue on hover
+$selected-bg:#013447 ; // Darkest for selected items
+$transition-speed: 0.3s;
+
+
+
+.candidate-summary {
+// z-index: -1;
+background: white;
+color: black;
+margin:5px;
+padding: 3vw; // Increased padding for better spacing
+border-radius: 1.5rem; // Slightly larger rounded corners
+box-shadow: 0 0.5vw 1.5vw rgba(0, 0, 0, 0.15);
+width: 90vw; // Increased width for larger display
+overflow-x: auto;
+max-height: 80vh;
+overflow: hidden;
+display: flex;
+flex-direction: row;
+&__left {
+    flex: 1;
+    background-color: $container-bg;
+    padding: 2vh 0vw;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    position: relative;
+    border-radius: 10px;
+    /* Improved scrolling behavior */
+    max-height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    /* Custom scrollbar */
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: lighten($container-bg, 10%);
+      border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: darken($container-bg, 20%);
+      border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: darken($container-bg, 30%);
+    }
+  }
+
+  &__right {
+    flex: 5;
+    padding: 20px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .filter-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: $container-bg;
+    color: $text-color;
+    border: none;
+    padding: 0.5vh 1vw;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 0.5vw;
+    transition: background-color $transition-speed ease;
+    z-index: 2; /* Ensure buttons stay above dropdowns */
+
+    &:hover, &:focus {
+      background-color: $hover-bg;
+    }
+  }
+  .dropdown-content {
+    background-color: $container-bg;
+    width: 100%;
+    max-height: 0;
+    opacity: 0;
+    visibility: hidden; /* Hide completely when closed */
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: max-height 0.4s ease-out, opacity 0.4s ease-out, transform 0.3s ease-out, visibility 0.4s;
+    overflow-y: auto; /* Allow scrolling within dropdown */
+    position: relative;
+    z-index: 1;
+  
+    &.show {
+      max-height: 200px; /* Limited height to prevent overflow */
+      opacity: 1;
+      visibility: visible;
+      transform: scaleY(1);
+    }
+  
+    /* Custom scrollbar for dropdowns */
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+  
+    &::-webkit-scrollbar-track {
+      background: lighten($container-bg, 5%);
+      border-radius: 3px;
+    }
+  
+    &::-webkit-scrollbar-thumb {
+      background: darken($container-bg, 15%);
+      border-radius: 3px;
+    }
+  }
+  
+  .dropdown-item {
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+    font-size: 1rem;
+    color: $text-color;
+    transition: background-color $transition-speed ease;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    &:hover, &:focus {
+      background-color: $hover-bg;
+    }
+    
+    /* Smaller, more non-descript dropdown indicator */
+    &::after {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-right: 1.5px solid $text-color;
+      border-bottom: 1.5px solid $text-color;
+      transform: rotate(45deg);
+      margin-right: 5px;
+      transition: transform 0.3s ease;
+    }
+    
+    /* Rotate arrow when sub-dropdown is open */
+    &:has(+ .sub-dropdown.show)::after {
+      transform: rotate(-135deg);
+    }
+  }
+  
+  /* Improved Sub-dropdowns */
+  .sub-dropdown {
+    background-color: lighten($container-bg, 5%); /* Slightly lighter for visual hierarchy */
+    padding-left: 15px;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out, transform 0.2s ease-out, visibility 0.3s;
+  
+    &.show {
+      max-height: 150px; /* Limited height */
+      opacity: 1;
+      visibility: visible;
+      transform: scaleY(1);
+      overflow-y: auto; /* Allow scrolling if too many items */
+    }
+  
+    /* Custom scrollbar for sub-dropdowns */
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+  
+    &::-webkit-scrollbar-track {
+      background: lighten($container-bg, 7%);
+    }
+  
+    &::-webkit-scrollbar-thumb {
+      background: darken($container-bg, 12%);
+    }
+  }
+  
+  .sub-dropdown-item {
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 8px;
+    width: 100%;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: $text-color;
+    transition: background-color $transition-speed ease;
+  
+    &:hover, &:focus {
+      background-color: $hover-bg;
+    }
+    
+    /* Keep selected state for deepest suboptions only */
+    &.selected {
+      background-color: $selected-bg;
+      font-weight: bold;
+      border-left: 3px solid white;
+    }
+  }
+  
+  /* Media query for better mobile experience */
+  @media (max-width: 768px) {
+    .container {
+      width: 95vw;
+      height: 80vh;
+      flex-direction: column;
+      
+      &__left {
+        flex: none;
+        width: 100%;
+        max-height: 40%;
+      }
+      
+      &__right {
+        flex: 1;
+      }
+    }
+    
+    .dropdown-content.show,
+    .sub-dropdown.show {
+      max-height: 40vh; /* Larger on mobile for better usability */
+    }
+}
+  
+.candidate-summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 0.15rem solid #ddd;
+    padding-bottom: 1.5vh;
+    margin-bottom: 1.5vh;
+
+    h2 {
+        font-size: 2rem; // Increased font size
+        margin: 0;
+    }
+
+    .close-button {
+        background: none;
+        border: none;
+        font-size: 2rem;
+        cursor: pointer;
+    }
+}
+
+.table-container {
+    overflow-y: auto;
+    max-height: 60vh;
+    border-radius: 5px;
+}
+
+.candidate-table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th, td {
+        padding: 1.5vh 1.5vw; // Increased padding for better spacing
+        text-align: left;
+        border-bottom: 0.15rem solid #ddd;
+    }
+
+    th {
+        background-color: #f1f1f1;
+        font-size: 1.2rem;
+    }
+
+    td {
+        font-size: 1.1rem;
+    }
+
+    .download-button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1.4rem;
+        align-self: center;
+        padding: 0.3rem;
+
+        img {
+            margin: auto;
+            width: 3.5rem; // Adjust the size as needed
+            height: 1.6rem; // Ensures proportional scaling
+        }
+    }
+
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 3rem; // Slightly bigger switch
+        height: 1.6rem;
+
+        input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 1rem;
+
+            &:before {
+                position: absolute;
+                content: "";
+                height: 1.2rem;
+                width: 1.2rem;
+                left: 0.3rem;
+                bottom: 0.2rem;
+                background-color: white;
+                transition: 0.1s;
+                border-radius: 50%;
+            }
+        }
+
+        // input:not(:checked) + .slider {
+        //     background-color: #ccc;
+        // }
+
+        input:checked + .slider {
+            background-color: #4CAF50;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(1.3rem);
+        }
+    }
+}
+
+}

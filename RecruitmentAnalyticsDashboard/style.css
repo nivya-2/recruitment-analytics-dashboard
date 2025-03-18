@@ -21,7 +21,7 @@ body {
   font-size: 1.8rem;
 }
 .dashboard__content {
-  padding: 1% 6%;
+  padding: 1% 3%;
 }
 
 .tab-container {
@@ -383,6 +383,477 @@ footer {
   font-size: 0.875rem;
   text-align: center;
   margin: 0.625rem 0;
+}
+
+.job-card_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 0fr));
+  gap: 1.5rem;
+  padding: 1rem;
+  margin-left: 3rem;
+  color: #000000;
+  margin-top: 0.5rem;
+}
+@media (max-width: 768px) {
+  .job-card_container {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 0fr));
+    gap: 1rem;
+    padding: 0.5rem;
+    justify-content: center;
+  }
+}
+
+.job-card {
+  color: #000000;
+  max-width: 360px;
+  background-color: white;
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+}
+.job-card:hover {
+  transform: scale(1.05) translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+.job-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1rem;
+  background-color: #0191C1;
+  border-radius: 24px 24px 0 0;
+}
+.job-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.job-card__avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #0191C1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: white;
+}
+.job-card__title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #000000;
+  margin: 0;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+.job-card__details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.job-card__location {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #000000;
+}
+.job-card__icon {
+  fill: #000000;
+  margin-right: 8px;
+}
+.job-card__experience {
+  background-color: #0191C1;
+  font-size: 13px;
+  padding: 4px 20px;
+  border-radius: 999px;
+  color: white;
+}
+.job-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+.job-card__date {
+  font-size: 14px;
+  color: #000000;
+}
+.job-card__stats {
+  text-align: right;
+}
+.job-card__stat {
+  font-size: 14px;
+  line-height: 1.5;
+}
+.job-card__stat-label {
+  font-weight: bold;
+  color: #000000;
+}
+.job-card__stat-value {
+  color: #000000;
+}
+.job-card__link {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #000000;
+  text-decoration: none;
+}
+.job-card__link:hover {
+  color: #f0a729;
+}
+.job-card__link:hover .job-card__arrow {
+  transform: translateX(4px);
+  fill: #f0a729;
+}
+.job-card__link__arrow {
+  margin-left: 8px;
+  transition: transform 0.2s ease;
+}
+
+.modal-backdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  z-index: 1000;
+}
+
+.modal-fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -55%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+.candidate-summary-body {
+  display: none !important; /* Hide by default */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  padding: 2vw;
+  transform: translate(-50%, -50%);
+  z-index: 1001;
+}
+
+.candidate-summary {
+  background: white;
+  color: black;
+  margin: 5px;
+  padding: 3vw;
+  border-radius: 1.5rem;
+  box-shadow: 0 0.5vw 1.5vw rgba(0, 0, 0, 0.15);
+  width: 90vw;
+  overflow-x: auto;
+  max-height: 80vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  /* Improved Sub-dropdowns */
+  /* Media query for better mobile experience */
+}
+.candidate-summary__left {
+  flex: 1;
+  background-color: #0191C1;
+  padding: 2vh 0vw;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  position: relative;
+  border-radius: 10px;
+  /* Improved scrolling behavior */
+  max-height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* Custom scrollbar */
+}
+.candidate-summary__left::-webkit-scrollbar {
+  width: 6px;
+}
+.candidate-summary__left::-webkit-scrollbar-track {
+  background: rgb(1.2628865979, 183.118556701, 243.7371134021);
+  border-radius: 3px;
+}
+.candidate-summary__left::-webkit-scrollbar-thumb {
+  background: rgb(0.4742268041, 68.7628865979, 91.5257731959);
+  border-radius: 3px;
+}
+.candidate-summary__left::-webkit-scrollbar-thumb:hover {
+  background: rgb(0.2113402062, 30.6443298969, 40.7886597938);
+}
+.candidate-summary__right {
+  flex: 5;
+  padding: 20px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.candidate-summary .filter-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #0191C1;
+  color: white;
+  border: none;
+  padding: 0.5vh 1vw;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 0.5vw;
+  transition: background-color 0.3s ease;
+  z-index: 2; /* Ensure buttons stay above dropdowns */
+}
+.candidate-summary .filter-button:hover, .candidate-summary .filter-button:focus {
+  background-color: #026d94;
+}
+.candidate-summary .dropdown-content {
+  background-color: #0191C1;
+  width: 100%;
+  max-height: 0;
+  opacity: 0;
+  visibility: hidden; /* Hide completely when closed */
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: max-height 0.4s ease-out, opacity 0.4s ease-out, transform 0.3s ease-out, visibility 0.4s;
+  overflow-y: auto; /* Allow scrolling within dropdown */
+  position: relative;
+  z-index: 1;
+  /* Custom scrollbar for dropdowns */
+}
+.candidate-summary .dropdown-content.show {
+  max-height: 200px; /* Limited height to prevent overflow */
+  opacity: 1;
+  visibility: visible;
+  transform: scaleY(1);
+}
+.candidate-summary .dropdown-content::-webkit-scrollbar {
+  width: 6px;
+}
+.candidate-summary .dropdown-content::-webkit-scrollbar-track {
+  background: rgb(1.131443299, 164.0592783505, 218.368556701);
+  border-radius: 3px;
+}
+.candidate-summary .dropdown-content::-webkit-scrollbar-thumb {
+  background: rgb(0.6056701031, 87.8221649485, 116.8943298969);
+  border-radius: 3px;
+}
+.candidate-summary .dropdown-item {
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 10px;
+  width: 100%;
+  cursor: pointer;
+  font-size: 1rem;
+  color: white;
+  transition: background-color 0.3s ease;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* Smaller, more non-descript dropdown indicator */
+  /* Rotate arrow when sub-dropdown is open */
+}
+.candidate-summary .dropdown-item:hover, .candidate-summary .dropdown-item:focus {
+  background-color: #026d94;
+}
+.candidate-summary .dropdown-item::after {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-right: 1.5px solid white;
+  border-bottom: 1.5px solid white;
+  transform: rotate(45deg);
+  margin-right: 5px;
+  transition: transform 0.3s ease;
+}
+.candidate-summary .dropdown-item:has(+ .sub-dropdown.show)::after {
+  transform: rotate(-135deg);
+}
+.candidate-summary .sub-dropdown {
+  background-color: rgb(1.131443299, 164.0592783505, 218.368556701); /* Slightly lighter for visual hierarchy */
+  padding-left: 15px;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: max-height 0.3s ease-out, opacity 0.3s ease-out, transform 0.2s ease-out, visibility 0.3s;
+  /* Custom scrollbar for sub-dropdowns */
+}
+.candidate-summary .sub-dropdown.show {
+  max-height: 150px; /* Limited height */
+  opacity: 1;
+  visibility: visible;
+  transform: scaleY(1);
+  overflow-y: auto; /* Allow scrolling if too many items */
+}
+.candidate-summary .sub-dropdown::-webkit-scrollbar {
+  width: 4px;
+}
+.candidate-summary .sub-dropdown::-webkit-scrollbar-track {
+  background: rgb(1.1840206186, 171.6829896907, 228.5159793814);
+}
+.candidate-summary .sub-dropdown::-webkit-scrollbar-thumb {
+  background: rgb(0.6845360825, 99.2577319588, 132.1154639175);
+}
+.candidate-summary .sub-dropdown-item {
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 8px;
+  width: 100%;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: white;
+  transition: background-color 0.3s ease;
+  /* Keep selected state for deepest suboptions only */
+}
+.candidate-summary .sub-dropdown-item:hover, .candidate-summary .sub-dropdown-item:focus {
+  background-color: #026d94;
+}
+.candidate-summary .sub-dropdown-item.selected {
+  background-color: #013447;
+  font-weight: bold;
+  border-left: 3px solid white;
+}
+@media (max-width: 768px) {
+  .candidate-summary .container {
+    width: 95vw;
+    height: 80vh;
+    flex-direction: column;
+  }
+  .candidate-summary .container__left {
+    flex: none;
+    width: 100%;
+    max-height: 40%;
+  }
+  .candidate-summary .container__right {
+    flex: 1;
+  }
+  .candidate-summary .dropdown-content.show,
+  .candidate-summary .sub-dropdown.show {
+    max-height: 40vh; /* Larger on mobile for better usability */
+  }
+}
+.candidate-summary .candidate-summary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 0.15rem solid #ddd;
+  padding-bottom: 1.5vh;
+  margin-bottom: 1.5vh;
+}
+.candidate-summary .candidate-summary-header h2 {
+  font-size: 2rem;
+  margin: 0;
+}
+.candidate-summary .candidate-summary-header .close-button {
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
+.candidate-summary .table-container {
+  overflow-y: auto;
+  max-height: 60vh;
+  border-radius: 5px;
+}
+.candidate-summary .candidate-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.candidate-summary .candidate-table th, .candidate-summary .candidate-table td {
+  padding: 1.5vh 1.5vw;
+  text-align: left;
+  border-bottom: 0.15rem solid #ddd;
+}
+.candidate-summary .candidate-table th {
+  background-color: #f1f1f1;
+  font-size: 1.2rem;
+}
+.candidate-summary .candidate-table td {
+  font-size: 1.1rem;
+}
+.candidate-summary .candidate-table .download-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.4rem;
+  align-self: center;
+  padding: 0.3rem;
+}
+.candidate-summary .candidate-table .download-button img {
+  margin: auto;
+  width: 3.5rem;
+  height: 1.6rem;
+}
+.candidate-summary .candidate-table .switch {
+  position: relative;
+  display: inline-block;
+  width: 3rem;
+  height: 1.6rem;
+}
+.candidate-summary .candidate-table .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.candidate-summary .candidate-table .switch .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 1rem;
+}
+.candidate-summary .candidate-table .switch .slider:before {
+  position: absolute;
+  content: "";
+  height: 1.2rem;
+  width: 1.2rem;
+  left: 0.3rem;
+  bottom: 0.2rem;
+  background-color: white;
+  transition: 0.1s;
+  border-radius: 50%;
+}
+.candidate-summary .candidate-table .switch input:checked + .slider {
+  background-color: #4CAF50;
+}
+.candidate-summary .candidate-table .switch input:checked + .slider:before {
+  transform: translateX(1.3rem);
 }
 
 /*# sourceMappingURL=style.css.map */
